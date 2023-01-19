@@ -22,13 +22,13 @@ app.post("/signin", async (req, res) => {
     const user = await User.findOne({ email });
     const match = await argon2.verify(user.password, password);
     if (!match) {
-      res.send({ error: true, message: "Invalid Credentials" });
+      res.send({ error: true, message: "Wrong Password!!" });
     } else {
       const token = jwt.sign({ email }, process.env.JWT_SECRET);
-      res.send({ error: false, token, message: "Login Successful" });
+      res.send({ error: false, token, message: "Login Successful!!" });
     }
   } catch (e) {
-    res.send({ error: true, message: "No User Found" });
+    res.send({ error: true, message: "No User Found!!" });
   }
 });
 
